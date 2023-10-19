@@ -10,8 +10,8 @@ string lectura();
 
 
 int main() {
-    string inputFileName = "input.txt"; // Cambia esto al nombre de tu archivo de entrada
-    string outputFileName = "output.txt"; // Cambia esto al nombre del archivo de salida
+    string inputFileName = "input.txt"; // Archivo de entrada
+    string outputFileName = "output.txt"; // Archivo de salida
 
     ifstream inputFile(inputFileName);
     if (!inputFile) {
@@ -34,40 +34,57 @@ int main() {
     inputFile.close();
     outputFile.close();
 
-    std::cout << "Texto convertido a binario y guardado en " << outputFileName << std::endl;
-    int semilla = 0;
-    cout<<"Ingrese el valor de la semilla de codificacion: "<<endl;
-    cin>>semilla;
-
-string texto2 = lectura();
+    cout << "Texto convertido a binario y guardado en " << outputFileName << std::endl;
 
 
+    string texto2 = lectura();
 
+
+   int semilla ;
    cout << "Ingrese el valor de la semilla de codificación: " << endl;
    cin >> semilla;
 
 
-   int blockSize = semilla;  // Tamaño de cada bloque
+   int blockSize = semilla;  // Se asigna el tamaño de cada bloque
 
-   int numBlocks = texto2.size() / blockSize;
+   int numBlocks = texto2.size() / blockSize;//Numero de bloques
 
-   vector<string> bloques;
+   vector<string> bloques;//String vector bloques
 
    for (int i = 0; i < numBlocks; i++) {
-       string bloque = texto2.substr(i * blockSize, blockSize);
-       bloques.push_back(bloque);
+       string bloque = texto2.substr(i * blockSize, blockSize);//Cadenas de caracteres tamaño bloque en la posición i*tamañobloque
+       bloques.push_back(bloque);//Bloque generado en el string anterior a la ultima posición
    }
 
-   // Ahora, en el vector "bloques" tienes todos los bloques de tamaño "semilla"
-   // Puedes realizar operaciones en cada bloque según tus necesidades.
 
-   for (const string& bloque : bloques) {
+   for(int i=0;i<bloques.size();i++)//Ciclo para imprimir los bloques.
+       cout<<"Bloque en la posicion "<<i<<"= "<<bloques[i]<<endl;
+
+   for(int i=0;i<bloques.size();i++)
+   {
+        string operador = bloques[i];
+        for(int j = 0; j<blockSize;j++)
+        {
+         int contadorceros = 0;
+         int contadorunos = 0;
+         if(operador[j]==0)
+             contadorceros++;
+         if(operador[j]==1)
+             contadorunos++;
+
+        }
+   }
+       //Ciclo para recorrer los bloques
+
+   // Ahora, en el vector "bloques" tienes todos los bloques de tamaño "semilla"
+
+ /*  for (const string& bloque : bloques) {
        cout << "Bloque: " << bloque << endl;
    }
    for(int i=0;i<texto2.size()/numBlocks;i++){
    cout<<"Bloque # "<<i<<bloques[i]<<endl;
    }
-
+*/
     return 0;
 }
 
